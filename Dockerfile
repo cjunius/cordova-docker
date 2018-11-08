@@ -4,7 +4,7 @@ FROM cjunius/android-sdk
 ARG NODE_JS_VERSION=10.13.0
 RUN mkdir /etc/node \
  && mkdir /opt/node \ 
- && wget -q https://nodejs.org/dist/v${NODE_JS_VERSION}/node-v${NODE_JS_VERSION}-linux-x64.tar.xz -O /etc/node-v${NODE_JS_VERSION}-linux-x64.tar.gz \
+ && wget -q https://nodejs.org/dist/v${NODE_JS_VERSION}/node-v${NODE_JS_VERSION}-linux-x64.tar.gz -O /etc/node-v${NODE_JS_VERSION}-linux-x64.tar.gz \
  && tar -xzf /etc/node-v${NODE_JS_VERSION}-linux-x64.tar.gz -C /etc/node \
  && mv /etc/node/node-v${NODE_JS_VERSION}-linux-x64/* /opt/node/ \
  && rm -rf /etc/node \
