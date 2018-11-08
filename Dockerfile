@@ -16,9 +16,9 @@ LABEL GRADLE_VERSION=${GRADLE_VERSION}
 # Install Node_JS
 ARG NODE_JS_VERSION=10.13.0
 RUN mkdir /opt/node \ 
- && wget -q https://nodejs.org/dist/v${NODE_JS_VERSION}/node-v${NODE_JS_VERSION}-linux-x64.tar.gz -O /opt/node/node-v${NODE_JS_VERSION}-linux-x64.tar.gz \
- && tar -xzf /etc/node/node-v${NODE_JS_VERSION}-linux-x64.tar.gz -C /opt/node \
- && rm -f /opt/node/node-v${NODE_JS_VERSION}-linux-x64.tar.gz
+ && wget -q https://nodejs.org/dist/v${NODE_JS_VERSION}/node-v${NODE_JS_VERSION}-linux-x64.tar.xz -O /opt/node/node-v${NODE_JS_VERSION}-linux-x64.tar.xz \
+ && tar -xzf /etc/node/node-v${NODE_JS_VERSION}-linux-x64.tar.xz -C /opt/node \
+ && rm -f /opt/node/node-v${NODE_JS_VERSION}-linux-x64.tar.xz
 ENV PATH ${PATH}:/opt/node/node-v${NODE_JS_VERSION}-linux-x64/bin
 LABEL NODE_JS_VERSION=${NODE_JS_VERSION}
 
