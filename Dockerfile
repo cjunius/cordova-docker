@@ -1,5 +1,18 @@
 FROM cjunius/android-sdk
 
+# Download and install Gradle
+ARG GRADLE_VERSION=4.10.2
+ENV GRADLE_HOME=/usr/local/gradle-${GRADLE_VERSION}
+ENV PATH=$PATH:$GRADLE_HOME/bin
+RUN cd /usr/local \
+ && wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -O gradle-${GRADLE_VERSION}-bin.zip && \
+ && unzip gradle-${GRADLE_VERSION}-bin.zip && \
+ && rm gradle-${GRADLE_VERSION}-bin.zip \
+ && mkdir /root/.gradle \
+ && echo ore.gradle.jvmargs=-Xmx2560M >> /root/.gradle/gradle.properties \
+ && echo org.gradle.configureondemand=true >> /root/.gradle/gradle.properties
+LABEL GRADLE_VERSION=${GRADLE_VERSION}
+
 # Install Node_JS
 ARG NODE_JS_VERSION=10.13.0
 RUN mkdir /etc/node \
@@ -18,19 +31,6 @@ RUN npm config set strict-ssl false \
  && npm install --verbose -g cordova \
  && npm install --verbose -g cordova-android \
  && npm cache clean --force
- 
-# Download and install Gradle
-ARG GRADLE_VERSION=4.10.2
-ENV GRADLE_HOME=/usr/local/gradle-${GRADLE_VERSION}
-ENV PATH=$PATH:$GRADLE_HOME/bin
-RUN cd /usr/local \
- && wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -O gradle-${GRADLE_VERSION}-bin.zip && \
- && unzip gradle-${GRADLE_VERSION}-bin.zip && \
- && rm gradle-${GRADLE_VERSION}-bin.zip
- && mkdir /root/.gradle
- && echo ore.gradle.jvmargs=-Xmx2560M >> /root/.gradle/gradle.properties \
- && echo org.gradle.configureondemand=true >> ~/.gradle/gradle.properties
-LABEL GRADLE_VERSION=${GRADLE_VERSION}
 
 #Install Android SDK Build Tools
 ARG BUILD_TOOLS_VERSION=28.0.3
