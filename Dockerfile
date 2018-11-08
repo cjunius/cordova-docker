@@ -16,8 +16,8 @@ LABEL GRADLE_VERSION=${GRADLE_VERSION}
 # Install Node_JS
 ARG NODE_JS_VERSION=10.13.0
 RUN mkdir /opt/node \ 
- && wget -q https://nodejs.org/dist/v${NODE_JS_VERSION}/node-v${NODE_JS_VERSION}-linux-x64.tar.xz -O /opt/node/node-v${NODE_JS_VERSION}-linux-x64.tar.xz \
- && tar -xzf /etc/node/node-v${NODE_JS_VERSION}-linux-x64.tar.xz -C /opt/node \
+ && wget https://nodejs.org/dist/v${NODE_JS_VERSION}/node-v${NODE_JS_VERSION}-linux-x64.tar.xz -O /opt/node/node-v${NODE_JS_VERSION}-linux-x64.tar.xz \
+ && tar -xf /etc/node/node-v${NODE_JS_VERSION}-linux-x64.tar.xz -C /opt/node \
  && rm -f /opt/node/node-v${NODE_JS_VERSION}-linux-x64.tar.xz
 ENV PATH ${PATH}:/opt/node/node-v${NODE_JS_VERSION}-linux-x64/bin
 LABEL NODE_JS_VERSION=${NODE_JS_VERSION}
@@ -42,9 +42,9 @@ ARG ANDROID_PLATFORM=28
 RUN sdkmanager "platforms;android-${ANDROID_PLATFORM}"
 LABEL ANDROID_PLATFORM=${ANDROID_PLATFORM}
 
-#Possible Extra
-#RUN sdkmanager "platform-tools"
-#RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
-#RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
-#RUN sdkmanager "extras;google;m2repository"
-#RUN sdkmanager "extras;google;google_play_services"
+#More android sdkmanager tools
+RUN sdkmanager "platform-tools"
+RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
+RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
+RUN sdkmanager "extras;google;m2repository"
+RUN sdkmanager "extras;google;google_play_services"
