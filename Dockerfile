@@ -27,6 +27,9 @@ RUN cd /usr/local \
  && wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -O gradle-${GRADLE_VERSION}-bin.zip && \
  && unzip gradle-${GRADLE_VERSION}-bin.zip && \
  && rm gradle-${GRADLE_VERSION}-bin.zip
+ && mkdir /root/.gradle
+ && echo ore.gradle.jvmargs=-Xmx2560M >> /root/.gradle/gradle.properties \
+ && echo org.gradle.configureondemand=true >> ~/.gradle/gradle.properties
 LABEL GRADLE_VERSION=${GRADLE_VERSION}
 
 #Install Android SDK Build Tools
