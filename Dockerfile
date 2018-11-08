@@ -39,11 +39,3 @@ LABEL BUILD_TOOLS_VERSION=${BUILD_TOOLS_VERSION}
 ARG ANDROID_PLATFORM=28
 RUN sdkmanager "platforms;android-${ANDROID_PLATFORM}"
 LABEL ANDROID_PLATFORM=${ANDROID_PLATFORM}
-
-#More android sdkmanager tools
-RUN sdkmanager "platform-tools"
-RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
-RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
-RUN sdkmanager "extras;android;m2repository"
-RUN sdkmanager "extras;google;m2repository"
-RUN sdkmanager "extras;google;google_play_services"
