@@ -38,7 +38,9 @@ LABEL BUILD_TOOLS_VERSIONS=${BUILD_TOOLS_VERSION}
 RUN sdkmanager "extras;android;m2repository"
 
 #Install Android Platform 28
-RUN sdkmanager "platforms;android-28"
+ARG ANDROID_PLATFORM=28
+RUN sdkmanager "platforms;android-${ANDROID_PLATFORM}"
+LABEL ANDROID_PLATFORM=${ANDROID_PLATFORM}
 
 #Possible Extra
 #RUN sdkmanager "platform-tools"
