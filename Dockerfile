@@ -39,3 +39,14 @@ LABEL BUILD_TOOLS_VERSION=${BUILD_TOOLS_VERSION}
 ARG ANDROID_PLATFORM=28
 RUN sdkmanager "platforms;android-${ANDROID_PLATFORM}"
 LABEL ANDROID_PLATFORM=${ANDROID_PLATFORM}
+
+#Create Cordova Test App
+RUN mkdir /testapp \
+ && cordova create /testapp \
+ && cd /testapp \
+ && cordova platform add android \
+ && cordova build android --verbose \
+ && cd / \
+ && rm -rf /testapp
+ 
+ RUN cd / && du -h -d 1 || exit 0
