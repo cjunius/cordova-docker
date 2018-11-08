@@ -5,8 +5,8 @@ ARG GRADLE_VERSION=4.10.2
 ENV GRADLE_HOME=/usr/local/gradle-${GRADLE_VERSION}
 ENV PATH=$PATH:$GRADLE_HOME/bin
 RUN cd /usr/local \
- && wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -O gradle-${GRADLE_VERSION}-bin.zip && \
- && unzip gradle-${GRADLE_VERSION}-bin.zip && \
+ && wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -O gradle-${GRADLE_VERSION}-bin.zip \
+ && unzip gradle-${GRADLE_VERSION}-bin.zip \
  && rm gradle-${GRADLE_VERSION}-bin.zip \
  && mkdir /root/.gradle \
  && echo ore.gradle.jvmargs=-Xmx2560M >> /root/.gradle/gradle.properties \
@@ -15,14 +15,11 @@ LABEL GRADLE_VERSION=${GRADLE_VERSION}
 
 # Install Node_JS
 ARG NODE_JS_VERSION=10.13.0
-RUN mkdir /etc/node \
- && mkdir /opt/node \ 
- && wget -q https://nodejs.org/dist/v${NODE_JS_VERSION}/node-v${NODE_JS_VERSION}-linux-x64.tar.gz -O /etc/node-v${NODE_JS_VERSION}-linux-x64.tar.gz \
- && tar -xzf /etc/node-v${NODE_JS_VERSION}-linux-x64.tar.gz -C /etc/node \
- && mv /etc/node/node-v${NODE_JS_VERSION}-linux-x64/* /opt/node/ \
- && rm -rf /etc/node \
- && rm -f /etc/node-v${NODE_JS_VERSION}-linux-x64.tar.gz
-ENV PATH ${PATH}:/opt/node/bin
+RUN mkdir /opt/node \ 
+ && wget -q https://nodejs.org/dist/v${NODE_JS_VERSION}/node-v${NODE_JS_VERSION}-linux-x64.tar.gz -O /opt/node/node-v${NODE_JS_VERSION}-linux-x64.tar.gz \
+ && tar -xzf /etc/node/node-v${NODE_JS_VERSION}-linux-x64.tar.gz -C /opt/node \
+ && rm -f /opt/node/node-v${NODE_JS_VERSION}-linux-x64.tar.gz
+ENV PATH ${PATH}:/opt/node/node-v${NODE_JS_VERSION}-linux-x64/bin
 LABEL NODE_JS_VERSION=${NODE_JS_VERSION}
 
 #Configure npm and install Cordova (97.7MB)
