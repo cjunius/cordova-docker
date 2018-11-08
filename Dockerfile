@@ -32,7 +32,7 @@ LABEL GRADLE_VERSION=${GRADLE_VERSION}
 #Install Android SDK Build Tools
 ARG BUILD_TOOLS_VERSION=28.0.3
 RUN sdkmanager "build-tools;${BUILD_TOOLS_VERSION}"
-LABEL BUILD_TOOLS_VERSIONS=${BUILD_TOOLS_VERSION}
+LABEL BUILD_TOOLS_VERSION=${BUILD_TOOLS_VERSION}
 
 #Install Android Support Repository
 RUN sdkmanager "extras;android;m2repository"
